@@ -1,4 +1,6 @@
 # BricksGame
+## Before start
+Unzip Plugins.zip
 ## Game description
 A game in which the player must dodge bricks flying in his direction and catch items that add points.
 ## Controls
