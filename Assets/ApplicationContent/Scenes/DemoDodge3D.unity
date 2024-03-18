@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 11098420}
   - component: {fileID: 11098419}
   m_Layer: 0
-  m_Name: Floor
+  m_Name: Floor1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -218,7 +218,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 546481606}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &23088154
 PrefabInstance:
@@ -334,7 +334,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bcae914220acd4907840a029bb9d9aec, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bcae914220acd4907840a029bb9d9aec, type: 3}
       propertyPath: m_LocalScale.x
@@ -835,7 +835,7 @@ GameObject:
   - component: {fileID: 438542888}
   - component: {fileID: 438542887}
   m_Layer: 0
-  m_Name: Floor
+  m_Name: Floor2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -988,10 +988,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 11098422}
-  - {fileID: 480528491}
-  - {fileID: 438542886}
   - {fileID: 1866423033}
+  - {fileID: 11098422}
+  - {fileID: 438542886}
+  - {fileID: 480528491}
   - {fileID: 1513516778}
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -1862,6 +1862,7 @@ GameObject:
   m_Component:
   - component: {fileID: 924135651}
   - component: {fileID: 924135652}
+  - component: {fileID: 924135653}
   m_Layer: 0
   m_Name: KeybordPlayer
   m_TagString: Untagged
@@ -1901,6 +1902,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a228c0afdb04b9419e893fa75c3a1db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &924135653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 924135650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 825e9691ecd26df43b1ea5265ae090d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _movedObject: {fileID: 896135235}
+  _leftBorder: {fileID: 2033832220}
+  _rightBorder: {fileID: 808241401}
+  _forwardBorder: {fileID: 498412156}
+  _backwardBorder: {fileID: 1236128351}
+  _walkingSpeed: 6
+  _sitPosition: 0.9
 --- !u!1 &934789784
 GameObject:
   m_ObjectHideFlags: 0
@@ -1949,9 +1969,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hpManager: {fileID: 880644773}
   _hpCount: 5
+  _waitBeforeStart: 5
   _scoreBar: {fileID: 1811763962}
   _notificationBar: {fileID: 1362760537}
-  _waitBeforeStart: 5
   _multipleButtons: {fileID: 1866423034}
   _speedChangingComponents:
   - {fileID: 317782955}
@@ -2280,57 +2300,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!1 &1302854341
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1302854342}
-  - component: {fileID: 1302854343}
-  m_Layer: 0
-  m_Name: KeyboardPlayer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1302854342
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1302854341}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1475979700}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1302854343
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1302854341}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 825e9691ecd26df43b1ea5265ae090d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _movedObject: {fileID: 896135235}
-  _leftBorder: {fileID: 2033832220}
-  _rightBorder: {fileID: 808241401}
-  _forwardBorder: {fileID: 498412156}
-  _backwardBorder: {fileID: 1236128351}
-  _walkingSpeed: 6
-  _sitPosition: 0.9
 --- !u!1 &1362760535
 GameObject:
   m_ObjectHideFlags: 0
@@ -2461,8 +2430,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1302854342}
+  m_Children: []
   m_Father: {fileID: 388807195}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3116,7 +3084,7 @@ Transform:
   - {fileID: 1676361605}
   - {fileID: 1542842682}
   m_Father: {fileID: 546481606}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1866423034
 MonoBehaviour:

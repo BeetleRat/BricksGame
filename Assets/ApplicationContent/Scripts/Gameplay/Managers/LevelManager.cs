@@ -20,10 +20,10 @@ public sealed class LevelManager : MonoBehaviour
     [SerializeField] private HpManager _hpManager;
     [Range(1, 100)] 
     [SerializeField] private int _hpCount;
-    [SerializeField] private UISmoothChangeNumberParameterBar _scoreBar;
-    [SerializeField] private UINotificationBar _notificationBar;
     [Range(0, 20)]
     [SerializeField] private int _waitBeforeStart = 0;
+    [SerializeField] private UISmoothChangeNumberParameterBar _scoreBar;
+    [SerializeField] private UINotificationBar _notificationBar;
     [SerializeField] private MultipleButtons _multipleButtons;
     [SerializeField] private AbstractSpeedChangingComponent[] _speedChangingComponents;
     

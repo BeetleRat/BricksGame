@@ -25,7 +25,7 @@ public sealed class ControllerManager : MonoBehaviour
     [Header("Manager components")]
     [SerializeField] private LevelManager _levelManager;
     [SerializeField] private AbstractBiofeedbackManager[] _biofeedbackManagers;
-    [SerializeField] private Player[] _availablePlayers;
+    [SerializeField] private AbstractPlayer[] _availablePlayers;
 
     private void Start()
     {
