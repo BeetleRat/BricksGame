@@ -12,16 +12,13 @@ public enum PlayerControlType
 /// <summary>
 /// <para>Class of player object.</para>
 /// <remarks>Player object must have a <see cref="PlayerAvatar"/> component among its children</remarks>
-/// <param name="playerControlType">the player control type</param>
 /// </summary>
-public sealed class Player : MonoBehaviour
+public abstract class Player : MonoBehaviour
 {
-    [SerializeField] private PlayerControlType _playerControlType;
-
     /// <summary>
     /// The player control type.
     /// </summary>
-    public PlayerControlType PlayerControlType => _playerControlType;
+    public abstract PlayerControlType PlayerControlType { get; }
 
     private PlayerAvatar playerAvatar;
 
