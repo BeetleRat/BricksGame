@@ -13,7 +13,7 @@ public enum PlayerControlType
 /// <para>Class of player object.</para>
 /// <remarks>Player object must have a <see cref="PlayerAvatar"/> component among its children</remarks>
 /// </summary>
-public abstract class Player : MonoBehaviour
+public abstract class AbstractPlayer : MonoBehaviour
 {
     /// <summary>
     /// The player control type.

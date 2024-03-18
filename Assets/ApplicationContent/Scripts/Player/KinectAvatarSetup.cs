@@ -8,10 +8,9 @@ public sealed class KinectAvatarSetup : AbstractAvatarSetup
 {
     [Tooltip("TrackerHandler TrackerHandler located in the Kinect4AzureTrackerAllInOne prefab")]
     [SerializeField] private TrackerHandler _kinectDevice;
-    [SerializeField] private PositionModification _positionModification;
-
     [Tooltip("pointBody object which is a child of Kinect4AzureTrackerAllInOne prefab")]
     [SerializeField] private Transform _rootPosition;
+    [SerializeField] private PositionModification _positionModification;
     
     public override bool ComponentContainsErrors()
     {

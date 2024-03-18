@@ -863,8 +863,8 @@ using UnityEngine;
 public enum BiofeedbackControlType
 {
     NONE,
-    HEART_RATE,
-    ACCELERATION
+    HEART_RATE
+    //,ACCELERATION
 }
 
 /// <summary>
@@ -880,7 +880,7 @@ public sealed class ControllerManager : MonoBehaviour
     [Header("Manager components")]
     [SerializeField] private LevelManager _levelManager;
     [SerializeField] private AbstractBiofeedbackManager[] _biofeedbackManagers;
-    [SerializeField] private Player[] _availablePlayers;
+    [SerializeField] private AbstractPlayer[] _availablePlayers;
 
     private void Start()
     {
@@ -921,7 +921,6 @@ public sealed class ControllerManager : MonoBehaviour
 \end{minted}
 \subsubsection*{HpManager.cs}
 \begin{minted}[fontsize=\tiny, breaklines, breakafter=d]{csharp}
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -1087,10 +1086,10 @@ public sealed class LevelManager : MonoBehaviour
     [SerializeField] private HpManager _hpManager;
     [Range(1, 100)] 
     [SerializeField] private int _hpCount;
-    [SerializeField] private UISmoothChangeNumberParameterBar _scoreBar;
-    [SerializeField] private UINotificationBar _notificationBar;
     [Range(0, 20)]
     [SerializeField] private int _waitBeforeStart = 0;
+    [SerializeField] private UISmoothChangeNumberParameterBar _scoreBar;
+    [SerializeField] private UINotificationBar _notificationBar;
     [SerializeField] private MultipleButtons _multipleButtons;
     [SerializeField] private AbstractSpeedChangingComponent[] _speedChangingComponents;
     
@@ -1243,7 +1242,7 @@ public sealed class LevelManager : MonoBehaviour
         }
     }
 
-#if UNITY_STANDALONE
+#if UNITY_EDITOR
 
     /// <summary>
     /// <para>Debug method for starting the game from the inspector by pressing the button.</para>
@@ -1279,7 +1278,7 @@ public sealed class PulseAccelerationManager : AbstractBiofeedbackManager
 
     private void Awake()
     {
-        _pulseControl = BiofeedbackControlType.ACCELERATION;
+        //_pulseControl = BiofeedbackControlType.ACCELERATION;
     }
 
     protected override void OnStart()
@@ -1714,8 +1713,19 @@ public sealed class AsyncCountDown
             if (count > 0)
             {
                 double awaitMilliseconds = this.period * (int)this.type;
-                await Task.Delay(TimeSpan.FromMilliseconds(awaitMilliseconds), token);
+                await Delay(awaitMilliseconds);
                 Tick();
+            }
+        }
+
+        private async Task Delay(double milliseconds)
+        {
+            try
+            {
+                await Task.Delay(TimeSpan.FromMilliseconds(milliseconds), token);
+            }
+            catch (TaskCanceledException)
+            {
             }
         }
     }
@@ -2437,6 +2447,43 @@ public abstract class AbstractAvatarSetup : MonoBehaviour
     public abstract void SetUp(ref Animator spawnedAvatar);
 }
 \end{minted}
+\subsubsection*{AbstractPlayer.cs}
+\begin{minted}[fontsize=\tiny, breaklines, breakafter=d]{csharp}
+using System;
+using UnityEngine;
+
+
+[Serializable]
+public enum PlayerControlType
+{
+    KEYBOARD,
+    KINECT
+}
+
+/// <summary>
+/// <para>Class of player object.</para>
+/// <remarks>Player object must have a <see cref="PlayerAvatar"/> component among its children</remarks>
+/// </summary>
+public abstract class AbstractPlayer : MonoBehaviour
+{
+    /// <summary>
+    /// The player control type.
+    /// </summary>
+    public abstract PlayerControlType PlayerControlType { get; }
+
+    private PlayerAvatar playerAvatar;
+
+    /// <summary>
+    /// The <see cref="PlayerAvatar"/> component.
+    /// </summary>
+    public PlayerAvatar PlayerAvatar => playerAvatar;
+
+    private void Awake()
+    {
+        playerAvatar = GetComponentInChildren<PlayerAvatar>();
+    }
+}
+\end{minted}
 \subsubsection*{AvatarColliderSetup.cs}
 \begin{minted}[fontsize=\tiny, breaklines, breakafter=d]{csharp}
 using UnityEngine;
@@ -2495,6 +2542,20 @@ public class AvatarColliderSetup : AbstractAvatarSetup
 
         Destroy(spawnedBodypartsColliders.gameObject);
     }
+}
+\end{minted}
+\subsubsection*{CustomizablePlayer.cs}
+\begin{minted}[fontsize=\tiny, breaklines, breakafter=d]{csharp}
+using UnityEngine;
+
+/// <summary>
+/// <inheritdoc cref="AbstractPlayer"/>
+/// <param name="playerControlType">the player control type</param>
+/// </summary>
+public sealed class CustomizablePlayer : AbstractPlayer
+{
+    [SerializeField] private PlayerControlType _playerControlType;
+    public override PlayerControlType PlayerControlType => _playerControlType;
 }
 \end{minted}
 \subsubsection*{ImmortalityEffectsSetup.cs}
@@ -2696,6 +2757,16 @@ public sealed class KeyboardObjectMovement : MonoBehaviour
     }
 }
 \end{minted}
+\subsubsection*{KeyboardPlayer.cs}
+\begin{minted}[fontsize=\tiny, breaklines, breakafter=d]{csharp}
+/// <summary>
+/// <para>Class of keyboard player object.</para>
+/// </summary>
+public sealed class KeyboardPlayer : AbstractPlayer
+{
+    public override PlayerControlType PlayerControlType => PlayerControlType.KEYBOARD;
+}
+\end{minted}
 \subsubsection*{KinectAvatarSetup.cs}
 \begin{minted}[fontsize=\tiny, breaklines, breakafter=d]{csharp}
 using Unity.VisualScripting;
@@ -2708,10 +2779,9 @@ public sealed class KinectAvatarSetup : AbstractAvatarSetup
 {
     [Tooltip("TrackerHandler TrackerHandler located in the Kinect4AzureTrackerAllInOne prefab")]
     [SerializeField] private TrackerHandler _kinectDevice;
-    [SerializeField] private PositionModification _positionModification;
-
     [Tooltip("pointBody object which is a child of Kinect4AzureTrackerAllInOne prefab")]
     [SerializeField] private Transform _rootPosition;
+    [SerializeField] private PositionModification _positionModification;
     
     public override bool ComponentContainsErrors()
     {
@@ -2760,49 +2830,18 @@ public sealed class KinectAvatarSetup : AbstractAvatarSetup
     }
 }
 \end{minted}
-\subsubsection*{Player.cs}
+\subsubsection*{KinectPlayer.cs}
 \begin{minted}[fontsize=\tiny, breaklines, breakafter=d]{csharp}
-using System;
-using UnityEngine;
-
-
-[Serializable]
-public enum PlayerControlType
-{
-    KEYBOARD,
-    KINECT
-}
-
 /// <summary>
-/// <para>Class of player object.</para>
-/// <remarks>Player object must have a <see cref="PlayerAvatar"/> component among its children</remarks>
-/// <param name="playerControlType">the player control type</param>
+/// <para>Class of kinect player object.</para>
 /// </summary>
-public sealed class Player : MonoBehaviour
+public sealed class KinectPlayer : AbstractPlayer
 {
-    [SerializeField] private PlayerControlType _playerControlType;
-
-    /// <summary>
-    /// The player control type.
-    /// </summary>
-    public PlayerControlType PlayerControlType => _playerControlType;
-
-    private PlayerAvatar playerAvatar;
-
-    /// <summary>
-    /// The <see cref="PlayerAvatar"/> component.
-    /// </summary>
-    public PlayerAvatar PlayerAvatar => playerAvatar;
-
-    private void Awake()
-    {
-        playerAvatar = GetComponentInChildren<PlayerAvatar>();
-    }
+    public override PlayerControlType PlayerControlType => PlayerControlType.KINECT;
 }
 \end{minted}
 \subsubsection*{PlayerAvatar.cs}
 \begin{minted}[fontsize=\tiny, breaklines, breakafter=d]{csharp}
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -2906,7 +2945,6 @@ public sealed class PlayerBodypart : MonoBehaviour
 \end{minted}
 \subsubsection*{PlayerBodypartsColliders.cs}
 \begin{minted}[fontsize=\tiny, breaklines, breakafter=d]{csharp}
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
