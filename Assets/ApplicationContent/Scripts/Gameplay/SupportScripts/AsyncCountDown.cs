@@ -125,8 +125,19 @@ public sealed class AsyncCountDown
             if (count > 0)
             {
                 double awaitMilliseconds = this.period * (int)this.type;
-                await Task.Delay(TimeSpan.FromMilliseconds(awaitMilliseconds), token);
+                await Delay(awaitMilliseconds);
                 Tick();
+            }
+        }
+
+        private async Task Delay(double milliseconds)
+        {
+            try
+            {
+                await Task.Delay(TimeSpan.FromMilliseconds(milliseconds), token);
+            }
+            catch (TaskCanceledException)
+            {
             }
         }
     }
