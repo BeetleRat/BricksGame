@@ -5,7 +5,14 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/ApplicationContent/Scenes/DemoDodge3D.unity
     guid: e23f82951b7aeaf48b1347fbb54e3f1f
-  m_configObjects: {}
+  - enabled: 1
+    path: Assets/Samples/XR Interaction Toolkit/2.3.2/Starter Assets/DemoScene.unity
+    guid: 319dafa5c80f29f428dc1e0d03f04177
+  m_configObjects:
+    Unity.XR.PICO.LivePreview.Settings: {fileID: 11400000, guid: efe9b7f380de2ad46bf4037c7f4c59bd, type: 2}
+    Unity.XR.PXR.Settings: {fileID: 11400000, guid: b63288b683cb46e40aa5756b75c7a65f, type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 769726c2fe4ec2a46b393aaf4f4dbd74, type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: ae66c49ff95f3b849916a42a6e24b3eb, type: 2}
