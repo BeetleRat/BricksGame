@@ -19,6 +19,16 @@
       },
       "url": "https://packages.unity.com"
     },
+    "com.unity.animation.rigging": {
+      "version": "1.1.1",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.burst": "1.4.1",
+        "com.unity.test-framework": "1.1.24"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.burst": {
       "version": "1.8.4",
       "depth": 2,
@@ -131,7 +141,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.pico.livepreview": {
-      "version": "file:D:/Users/BeetleRatLT/Desktop/Новая папка (2)",
+      "version": "file:../PicoXR/PicoLivePreview",
       "depth": 0,
       "source": "local",
       "dependencies": {
@@ -281,7 +291,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.xr.picoxr": {
-      "version": "file:D:/Users/BeetleRatLT/Desktop/Новая папка",
+      "version": "file:../PicoXR/PicoIntegration",
       "depth": 0,
       "source": "local",
       "dependencies": {

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -23,14 +24,22 @@ public sealed class ControllerManager : MonoBehaviour
     [SerializeField] private Animator _playerAvatar;
 
     [Header("Manager components")]
-    [SerializeField] private LevelManager _levelManager;
-    [SerializeField] private AbstractBiofeedbackManager[] _biofeedbackManagers;
     [SerializeField] private AbstractPlayer[] _availablePlayers;
+    [SerializeField] private AbstractBiofeedbackManager[] _biofeedbackManagers;
+    [SerializeField] private Camera _mainCamera;
+    [SerializeField] private LevelManager _levelManager;
+
+    private static readonly HashSet<PlayerControlType> ControllersWithOwnCamera =
+        new HashSet<PlayerControlType>()
+        {
+            PlayerControlType.XR
+        };
 
     private void Start()
     {
         DisableBiofeedbackManagers();
         DisablePlayers();
+        DisableMainCamera();
     }
 
     private void DisableBiofeedbackManagers()
@@ -60,6 +69,14 @@ public sealed class ControllerManager : MonoBehaviour
             {
                 player.PlayerAvatar.CreatePlayerFromAvatar(_playerAvatar);
             }
+        }
+    }
+
+    private void DisableMainCamera()
+    {
+        if (ControllersWithOwnCamera.Contains(_playerControlType) && _mainCamera != null)
+        {
+            _mainCamera.gameObject.SetActive(false);
         }
     }
 }

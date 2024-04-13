@@ -6,7 +6,8 @@ using UnityEngine;
 public enum PlayerControlType
 {
     KEYBOARD,
-    KINECT
+    KINECT,
+    XR
 }
 
 /// <summary>

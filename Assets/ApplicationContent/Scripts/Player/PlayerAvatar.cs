@@ -1,3 +1,4 @@
+using Unity.XR.CoreUtils;
 using UnityEngine;
 
 /// <summary>
@@ -28,6 +29,7 @@ public class PlayerAvatar : MonoBehaviour
     {
         if (DoesComponentContainErrors())
         {
+            CustomLogger.Error(this, "The settings of the created avatar contain errors");
             return;
         }
 
@@ -42,7 +44,7 @@ public class PlayerAvatar : MonoBehaviour
         isPlayerSpawned = true;
     }
 
-    protected virtual bool DoesComponentContainErrors()
+    private bool DoesComponentContainErrors()
     {
         if (isPlayerSpawned)
         {
@@ -62,7 +64,18 @@ public class PlayerAvatar : MonoBehaviour
 
     private Animator SpawnPlayer(Animator avatarPrefab)
     {
-        return Instantiate(avatarPrefab, transform, false);
+        Animator spawnedAvatar = Instantiate(avatarPrefab, transform, false);
+        
+        SetAvatarsLayer(spawnedAvatar.gameObject);
+        
+        return spawnedAvatar;
+    }
+
+    private static void SetAvatarsLayer(GameObject spawnedAvatar)
+    {
+        int layerIndex = CheckCameraLayersRendering.GetLayerIndexOrElseThrow("MyAvatar");
+
+        spawnedAvatar.SetLayerRecursively(layerIndex);
     }
 
     private void AvatarSetup(ref Animator playerAnimator)
