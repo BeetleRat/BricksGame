@@ -208,5 +208,8 @@ public sealed class XRAvatarSetup : AbstractAvatarSetup
         LowerbodyAnimation lowerbodyAnimation = spawnedAvatarObject.AddComponent<LowerbodyAnimation>();
         
         WalkingAnimatorController walkingAnimatorController = spawnedAvatarObject.AddComponent<WalkingAnimatorController>();
+        walkingAnimatorController.Animator = spawnedAvatar;
+        walkingAnimatorController.Head = _xrHead;
+        walkingAnimatorController.PreviousPosition = _xrHead.position;
     }
 }

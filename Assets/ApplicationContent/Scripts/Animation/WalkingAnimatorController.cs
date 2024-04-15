@@ -15,18 +15,30 @@ public sealed class WalkingAnimatorController : MonoBehaviour
     [SerializeField] private float _smoothAnimation = 0.3f;
     
     private Animator animator;
+    private Transform head;
     private Vector3 previousPosition;
-    private AvatarXRMapper avatarMapper;
 
-    private void Start()
+    public Animator Animator
     {
-        animator = GetComponent<Animator>();
-        avatarMapper = GetComponent<AvatarXRMapper>();
-        previousPosition = avatarMapper.Head.Target.position;
+        set => animator = value;
     }
+    public Transform Head
+    {
+        set => head = value;
+    }
+    public Vector3 PreviousPosition
+    {
+        set => previousPosition = value;
+    }
+    
 
     private void Update()
     {
+        if (animator == null || head == null | previousPosition == null)
+        {
+            return;
+        }
+        
         Vector3 headsetLocalSpeed = GetHeadsetLocalSpeed();
 
         SetAnimatorParameters(headsetLocalSpeed);
@@ -34,7 +46,7 @@ public sealed class WalkingAnimatorController : MonoBehaviour
 
     private Vector3 GetHeadsetLocalSpeed()
     {
-        Vector3 currentPosition = avatarMapper.Head.Target.position;
+        Vector3 currentPosition = head.position;
 
         Vector3 headsetSpeed = (currentPosition - previousPosition) / Time.deltaTime;
         headsetSpeed.y = 0;

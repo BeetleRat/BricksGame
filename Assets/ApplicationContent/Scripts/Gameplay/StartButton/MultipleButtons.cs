@@ -18,14 +18,18 @@ public sealed class MultipleButtons : MonoBehaviour
     private List<ObjectButton> activeStartButtons;
     private bool isButtonsHide = false;
     private float hideDuration = 1;
+    private float startScale;
+    private float endScale;
 
     private void Start()
     {
         activeStartButtons = new List<ObjectButton>();
         foreach (ObjectButton startButton in _objectButtons)
         {
+            startScale = startButton.transform.localScale.x;
             startButton.ButtonPressed += ActivateStartButton;
         }
+        endScale = startScale - startScale * 0.6f;
     }
 
     private void OnDestroy()
@@ -44,7 +48,8 @@ public sealed class MultipleButtons : MonoBehaviour
         }
 
         activeStartButtons.Add(objectButton);
-        objectButton.transform.DOScale(0.7f, 1);
+        
+        objectButton.transform.DOScale(endScale, 1);
 
         if (activeStartButtons.Count >= _objectButtons.Length)
         {
@@ -62,7 +67,7 @@ public sealed class MultipleButtons : MonoBehaviour
             transform.DOMoveY(0, hideDuration);
             foreach (ObjectButton startButton in _objectButtons)
             {
-                startButton.transform.DOScale(1f, 1);
+                startButton.transform.DOScale(startScale, 1);
             }
 
             isButtonsHide = false;

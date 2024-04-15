@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.0074532805, g: 0.0081223305, b: 0.008894942, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1150,12 +1150,13 @@ MonoBehaviour:
   _playerControlType: 0
   _biofeedbackControlType: 0
   _playerAvatar: {fileID: 8090128430441869282, guid: 63fb7faf5296abe45b3765ed81749680, type: 3}
-  _levelManager: {fileID: 1625327529}
-  _biofeedbackManagers:
-  - {fileID: 565439531}
   _availablePlayers:
   - {fileID: 1419198030}
   - {fileID: 486240237}
+  _biofeedbackManagers:
+  - {fileID: 565439531}
+  _mainCamera: {fileID: 0}
+  _levelManager: {fileID: 1625327529}
 --- !u!1001 &695958876
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1835,8 +1836,8 @@ RectTransform:
   m_GameObject: {fileID: 936462986}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 50, y: 50, z: 50}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 62408022}
   m_RootOrder: 0
@@ -2592,9 +2593,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hpManager: {fileID: 240832288}
   _hpCount: 5
+  _waitBeforeStart: 5
   _scoreBar: {fileID: 765393640}
   _notificationBar: {fileID: 2002095674}
-  _waitBeforeStart: 5
   _multipleButtons: {fileID: 1866423034}
   _speedChangingComponents:
   - {fileID: 754602655}

@@ -64,8 +64,8 @@ public sealed class UIHpBar : MonoBehaviour
         hpImagesArray = new UIHealthPoint[hpCount];
         Transform prefabTransform = _uiHealthPointPrefab.transform;
         Rect imageRectTransform = ((RectTransform)prefabTransform).rect;
-        hpImageWidth = imageRectTransform.width * prefabTransform.localScale.x;
-        hpImageHeight = imageRectTransform.height * prefabTransform.localScale.y;
+        hpImageWidth = imageRectTransform.width * prefabTransform.localScale.x * transform.localScale.x;
+        hpImageHeight = imageRectTransform.height * prefabTransform.localScale.y * transform.localScale.y;
         for (int i = 0; i < hpImagesArray.Length; i++)
         {
             var spawnedHeart = SpawnHeart(i);
@@ -76,7 +76,7 @@ public sealed class UIHpBar : MonoBehaviour
 
     private UIHealthPoint SpawnHeart(int xOffset)
     {
-        float fullXOffset = -xOffset * hpImageWidth - _prefabSpacing - hpImageWidth / 2;
+        float fullXOffset = xOffset * hpImageWidth + _prefabSpacing + hpImageWidth / 2;
         float fullYOffset = -hpImageHeight / 2;
         Vector3 spawnPosition = transform.position + new Vector3(fullXOffset, fullYOffset);
 
@@ -84,6 +84,10 @@ public sealed class UIHpBar : MonoBehaviour
             Instantiate(_uiHealthPointPrefab.gameObject, spawnPosition, Quaternion.identity)
                 .GetComponent<UIHealthPoint>();
         spawnedUIHealthPoint.transform.SetParent(transform);
+        spawnedUIHealthPoint.transform.localScale = new Vector3(
+            spawnedUIHealthPoint.transform.localScale.x * transform.localScale.x,
+            spawnedUIHealthPoint.transform.localScale.y * transform.localScale.y,
+            spawnedUIHealthPoint.transform.localScale.z * transform.localScale.z);
 
         return spawnedUIHealthPoint;
     }
