@@ -97,3 +97,7 @@ Thumbs.db
 # Exceptions
 !*.dll
 !*.obj
+
+# Special project libs stored in Plugins.zip
+directml.dll
+dnn_model_2_0_op11.onnx
