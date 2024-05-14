@@ -8,17 +8,30 @@ public abstract class BackgroundDataProvider:IDisposable
     private bool m_latest = false;
     object m_lockObj = new object();
     public bool IsRunning { get; set; } = false;
-    private CancellationTokenSource _cancellationTokenSource;
+    private CancellationTokenSource kinectConnectionTokenSource;
     private CancellationToken _token;
+    private int providerId;
 
     public BackgroundDataProvider(int id)
     {
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.quitting += OnEditorClose;
 #endif
-        _cancellationTokenSource = new CancellationTokenSource();
-        _token = _cancellationTokenSource.Token;
-        Task.Run(() => RunBackgroundThreadAsync(id, _token));
+        providerId = id;
+        kinectConnectionTokenSource = new CancellationTokenSource();
+        ConnectDevice();
+    }
+
+    protected void ReConnectDevice()
+    {
+        kinectConnectionTokenSource.Cancel();
+        ConnectDevice();
+    }
+
+    private void ConnectDevice()
+    {
+        _token = kinectConnectionTokenSource.Token;
+        Task.Run(() => RunBackgroundThreadAsync(providerId, _token));
     }
 
     private void OnEditorClose()
@@ -57,8 +70,8 @@ public abstract class BackgroundDataProvider:IDisposable
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.quitting -= OnEditorClose;
 #endif
-        _cancellationTokenSource?.Cancel();
-        _cancellationTokenSource?.Dispose();
-        _cancellationTokenSource = null;
+        kinectConnectionTokenSource?.Cancel();
+        kinectConnectionTokenSource?.Dispose();
+        kinectConnectionTokenSource = null;
     }
 }
