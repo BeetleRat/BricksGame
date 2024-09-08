@@ -40,16 +40,9 @@ public sealed class HpManager : MonoBehaviour
     {
         set
         {
-            if (_hpCount != value)
-            {
-                _hpCount = value;
-                currentHP = value;
-                _hpBar.CreateNewBar(_hpCount);
-            }
-            else
-            {
-                ResetHP();
-            }
+            _hpCount = value;
+            currentHP = value;
+            _hpBar.CreateNewBar(_hpCount);
         }
     }
 
@@ -63,14 +56,6 @@ public sealed class HpManager : MonoBehaviour
         {
             immortalityTime -= Time.deltaTime;
         }
-    }
-
-    /// <summary>
-    /// <para>Set all health points to the active state without changing their quantity.</para>
-    /// </summary>
-    public void ResetHP()
-    {
-        ChangeHP(_hpCount);
     }
 
     /// <summary>

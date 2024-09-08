@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.0074532805, g: 0.0081223305, b: 0.008894942, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2378,7 +2378,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1245258129}
   m_RootOrder: 0
@@ -2448,7 +2448,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerControlType: 0
   _biofeedbackControlType: 0
-  _playerAvatar: {fileID: 8787360441421836598, guid: 479daa6e1be45b24fa25ce9c8befa99f, type: 3}
+  _playerAvatar: {fileID: 8090128430441869282, guid: 63fb7faf5296abe45b3765ed81749680, type: 3}
   _levelManager: {fileID: 934789787}
   _biofeedbackManagers:
   - {fileID: 247133884}

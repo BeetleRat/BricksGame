@@ -9,6 +9,8 @@ public sealed class PuppetAvatarDeviceConfiguration : MonoBehaviour
     private TrackerHandler trackerHandler;
     private SkeletalTrackingProvider m_skeletalTrackingProvider;
 
+    public SkeletalTrackingProvider SkeletalTrackingProvider => m_skeletalTrackingProvider;
+
     private void Start()
     {
         //tracker ids needed for when there are two trackers

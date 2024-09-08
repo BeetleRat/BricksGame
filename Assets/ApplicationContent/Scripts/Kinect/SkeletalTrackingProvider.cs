@@ -132,4 +132,9 @@ public sealed class SkeletalTrackingProvider : BackgroundDataProvider
             token.ThrowIfCancellationRequested();
         }
     }
+
+    public void ReconnectKinectDevice()
+    {
+        ReConnectDevice();
+    }
 }
