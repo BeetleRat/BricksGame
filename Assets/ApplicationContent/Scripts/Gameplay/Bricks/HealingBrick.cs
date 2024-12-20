@@ -18,6 +18,9 @@ public sealed class HealingBrick : AbstractProjectile
     [SerializeField] private float _magnificationSpeed;
     [SerializeField] private float _fadeOutSpeed;
 
+    [Header("Audio settings")]
+    [SerializeField] private AudioSource _actionAudioSource;
+
     private bool isFadeOut;
 
     /// <summary>
@@ -26,6 +29,10 @@ public sealed class HealingBrick : AbstractProjectile
     protected override void PerformAction()
     {
         levelManager?.AddHealthPoint(_hpAdded);
+        if (_actionAudioSource != null)
+        {
+            _actionAudioSource.Play();
+        }
         FadeOut();
     }
 

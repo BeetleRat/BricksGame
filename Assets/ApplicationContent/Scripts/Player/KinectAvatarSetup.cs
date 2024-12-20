@@ -21,7 +21,7 @@ public sealed class KinectAvatarSetup : AbstractAvatarSetup
 
         if (_kinectDevice == null)
         {
-            CustomLogger.Error(this, "No kinect device");
+            CustomLogger.Error("No kinect device");
             return true;
         }
 

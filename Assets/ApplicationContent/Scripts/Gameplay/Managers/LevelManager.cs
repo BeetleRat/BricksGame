@@ -54,7 +54,7 @@ public sealed class LevelManager : MonoBehaviour
         _hpManager.OutOfHP += EndGame;
         _multipleButtons.ButtonsPressed += StartGame;
         timerToken = new CancellationTokenSource();
-        timerToken.Token.Register(() => CustomLogger.Log(this, "Async timer canceled"));
+        timerToken.Token.Register(() => CustomLogger.Log("Async timer canceled"));
     }
 
     private void OnDestroy()
@@ -95,12 +95,12 @@ public sealed class LevelManager : MonoBehaviour
         _multipleButtons.Hide();
         if (biofeedbackManager?.PulseCondition == PulseCondition.CRITICAL)
         {
-            CustomLogger.Log(this, "Critical pulse condition. Request to start the game rejected");
+            CustomLogger.Log("Critical pulse condition. Request to start the game rejected");
             _multipleButtons.Show();
             return;
         }
         
-        CustomLogger.Log(this, "The game has started");
+        CustomLogger.Log("The game has started");
         _hpManager.HpCount = _hpCount;
         _scoreBar.SetParameterValue(0);
         
@@ -112,7 +112,7 @@ public sealed class LevelManager : MonoBehaviour
     /// </summary>
     public void EndGame()
     {
-        CustomLogger.Log(this, "The game is over");
+        CustomLogger.Log("The game is over");
         isGameStart = false;
         GameEnded?.Invoke();
         _multipleButtons.Show();

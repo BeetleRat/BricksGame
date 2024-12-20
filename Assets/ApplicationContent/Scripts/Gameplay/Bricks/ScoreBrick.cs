@@ -16,6 +16,9 @@ public sealed class ScoreBrick : AbstractProjectile
     [Header("Fade out settings")]
     [SerializeField] private float _transformMultiplier;
     [SerializeField] private float _fadeOutSpeed;
+    
+    [Header("Audio settings")]
+    [SerializeField] private AudioSource _actionAudioSource;
 
     private bool isFadeOut;
     private int activeRenderersCount;
@@ -26,6 +29,11 @@ public sealed class ScoreBrick : AbstractProjectile
     protected override void PerformAction()
     {
         levelManager.AddScore(_scorePoints);
+        if (_actionAudioSource != null)
+        {
+            _actionAudioSource.Play();
+        }
+        
         FadeOut();
     }
 

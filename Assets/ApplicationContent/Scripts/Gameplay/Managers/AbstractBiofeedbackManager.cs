@@ -102,7 +102,7 @@ public abstract class AbstractBiofeedbackManager : MonoBehaviour
     {
         if (_pulseRateConditions.Count == 0)
         {
-            CustomLogger.Error(this, "Conditions List is empty");
+            CustomLogger.Error("Conditions List is empty");
             return;
         }
 

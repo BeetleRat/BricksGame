@@ -19,7 +19,7 @@ public class AvatarColliderSetup : AbstractAvatarSetup
 
         if (_playerBodypartsColliders == null)
         {
-            CustomLogger.Error(this, "Humanoid colliders not selected");
+            CustomLogger.Error("Humanoid colliders not selected");
             return true;
         }
 

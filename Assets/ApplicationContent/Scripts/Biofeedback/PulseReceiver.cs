@@ -175,7 +175,7 @@ public sealed class PulseReceiver : MonoBehaviour
     {
         if (_debug)
         {
-            CustomLogger.Log(this, message);
+            CustomLogger.Log(message);
         }
     }
 
@@ -183,7 +183,7 @@ public sealed class PulseReceiver : MonoBehaviour
     {
         if (_debug)
         {
-            CustomLogger.Error(this, message);
+            CustomLogger.Error(message);
         }
     }
 }

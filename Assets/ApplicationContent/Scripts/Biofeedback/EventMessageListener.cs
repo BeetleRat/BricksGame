@@ -22,7 +22,7 @@ public sealed class EventMessageListener : MonoBehaviour
     // Invoked when a line of data is received from the serial device.
     private void OnMessageArrived(string msg)
     {
-        CustomLogger.Log(this, MESSAGE_ARRIVED_PREFIX + msg);
+        CustomLogger.Log(MESSAGE_ARRIVED_PREFIX + msg);
         MessageArrived?.Invoke(msg);
     }
 
