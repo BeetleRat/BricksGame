@@ -2771,7 +2771,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerControlType: 0
-  _biofeedbackControlType: 1
+  _biofeedbackControlType: 0
   _playerAvatar: {fileID: 8090128430441869282, guid: 63fb7faf5296abe45b3765ed81749680, type: 3}
   _levelManager: {fileID: 934789787}
   _biofeedbackManagers:

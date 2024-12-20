@@ -4030,6 +4030,7 @@ MonoBehaviour:
   _scorePoints: 100
   _transformMultiplier: 3
   _fadeOutSpeed: 0.3
+  _fadeParticles: {fileID: 5904586960377966627, guid: 602576b1f3e2f0e4792a1ae6f701608a, type: 3}
   _actionAudioSource: {fileID: 3485763164274433399}
 --- !u!82 &3485763164274433399
 AudioSource:
