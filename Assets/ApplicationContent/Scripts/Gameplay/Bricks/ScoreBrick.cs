@@ -16,6 +16,7 @@ public sealed class ScoreBrick : AbstractProjectile
     [Header("Fade out settings")]
     [SerializeField] private float _transformMultiplier;
     [SerializeField] private float _fadeOutSpeed;
+    [SerializeField] private ParticleSystem _fadeParticles;
     
     [Header("Audio settings")]
     [SerializeField] private AudioSource _actionAudioSource;
@@ -33,7 +34,8 @@ public sealed class ScoreBrick : AbstractProjectile
         {
             _actionAudioSource.Play();
         }
-        
+
+        SpawnParticles();
         FadeOut();
     }
 
@@ -60,5 +62,12 @@ public sealed class ScoreBrick : AbstractProjectile
         {
             Destroy(gameObject);
         }
+    }
+    
+    private void SpawnParticles()
+    {
+        Vector3 particlesPosition = transform.position + new Vector3(Random.Range(-0.3f, 0.3f), Random.Range(-0.3f, 0.3f), Random.Range(-0.3f, 0.3f));
+        GameObject particles = Instantiate(_fadeParticles.gameObject, particlesPosition, Quaternion.identity);
+        Destroy(particles, _fadeParticles.main.duration);
     }
 }

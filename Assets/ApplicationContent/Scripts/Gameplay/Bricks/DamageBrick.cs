@@ -16,6 +16,7 @@ public sealed class DamageBrick : AbstractProjectile
     [SerializeField] private float _crashForce = 6f;
     [SerializeField] private float _crashRadius = 6f;
     [SerializeField] private float _destructionTimeSec = 2.5f;
+    [SerializeField] private ParticleSystem _blastParticles;
     
     [Header("Audio settings")]
     [SerializeField] private AudioSource _actionAudioSource;
@@ -40,11 +41,18 @@ public sealed class DamageBrick : AbstractProjectile
             // Вернуть объекту возможность физического взаимодействия
             rigidbody.isKinematic = false;
             rigidbody.useGravity = true;
+            Vector3 explosionPosition = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+            SpawnParticles(explosionPosition);
             // Растолкать объект в разные стороны
-            rigidbody.AddExplosionForce(force,
-                transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f)), radius);
+            rigidbody.AddExplosionForce(force, explosionPosition, radius);
         }
 
         Destroy(gameObject, _destructionTimeSec);
+    }
+
+    private void SpawnParticles(Vector3 explosionPosition)
+    {
+        GameObject particles = Instantiate(_blastParticles.gameObject, explosionPosition, Quaternion.identity);
+        Destroy(particles, _blastParticles.main.duration);
     }
 }

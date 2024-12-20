@@ -132,6 +132,7 @@ MonoBehaviour:
   _crashForce: 100
   _crashRadius: 500
   _destructionTimeSec: 2.5
+  _blastParticles: {fileID: 4183884210731817606, guid: 152fda0b353b69d408e416606e37d32a, type: 3}
   _actionAudioSource: {fileID: 690698745043535138}
 --- !u!82 &690698745043535138
 AudioSource:

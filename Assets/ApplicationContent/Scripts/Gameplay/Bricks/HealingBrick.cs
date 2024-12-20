@@ -17,6 +17,7 @@ public sealed class HealingBrick : AbstractProjectile
     [SerializeField] private float _transformMultiplier;
     [SerializeField] private float _magnificationSpeed;
     [SerializeField] private float _fadeOutSpeed;
+    [SerializeField] private ParticleSystem _fadeParticles;
 
     [Header("Audio settings")]
     [SerializeField] private AudioSource _actionAudioSource;
@@ -33,6 +34,7 @@ public sealed class HealingBrick : AbstractProjectile
         {
             _actionAudioSource.Play();
         }
+        SpawnParticles();
         FadeOut();
     }
 
@@ -40,5 +42,12 @@ public sealed class HealingBrick : AbstractProjectile
     {
         transform.DOScale(transform.localScale * _transformMultiplier, _magnificationSpeed)
             .OnComplete(() => transform.DOScale(0, _fadeOutSpeed));
+    }
+    
+    private void SpawnParticles()
+    {
+        Vector3 particlesPosition = transform.position + new Vector3(Random.Range(-0.3f, 0.3f), Random.Range(0.5f, 1.5f), Random.Range(-0.3f, 0.3f));
+        GameObject particles = Instantiate(_fadeParticles.gameObject, particlesPosition, Quaternion.identity);
+        Destroy(particles, _fadeParticles.main.duration);
     }
 }
