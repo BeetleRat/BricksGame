@@ -26,6 +26,6 @@ public abstract class AbstractSpeedChangingComponent : MonoBehaviour
 
     protected void LogNoSpeedSettingsFor(Speed speed)
     {
-        CustomLogger.Error(this, $"No speed settings are specified for speed {Enum.GetName(typeof(Speed), speed)}");
+        CustomLogger.Error($"No speed settings are specified for speed {Enum.GetName(typeof(Speed), speed)}");
     }
 }

@@ -33,7 +33,7 @@ public class PlayerAvatar : MonoBehaviour
 
         if (!avatarPrefab.avatar.isHuman)
         {
-            CustomLogger.Error(this, "The avatar's skeleton is not humanoid");
+            CustomLogger.Error("The avatar's skeleton is not humanoid");
             return;
         }
 

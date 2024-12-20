@@ -55,7 +55,7 @@ public sealed class ProjectileSpawner : AbstractSpeedChangingComponent
     {
         if (_speedSettings.Count == 0)
         {
-            CustomLogger.Error(this, "Speed Settings List is empty");
+            CustomLogger.Error("Speed Settings List is empty");
         }
         else
         {
@@ -187,7 +187,7 @@ public sealed class ProjectileSpawner : AbstractSpeedChangingComponent
 
         if (_speedSettings.Count == 0)
         {
-            CustomLogger.Error(this, "Speed Settings List is empty");
+            CustomLogger.Error("Speed Settings List is empty");
             return;
         }
 

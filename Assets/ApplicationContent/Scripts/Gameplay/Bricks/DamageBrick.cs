@@ -16,6 +16,9 @@ public sealed class DamageBrick : AbstractProjectile
     [SerializeField] private float _crashForce = 6f;
     [SerializeField] private float _crashRadius = 6f;
     [SerializeField] private float _destructionTimeSec = 2.5f;
+    
+    [Header("Audio settings")]
+    [SerializeField] private AudioSource _actionAudioSource;
 
     /// <summary>
     /// <inheritdoc cref="AbstractProjectile.PerformAction"/>
@@ -23,6 +26,10 @@ public sealed class DamageBrick : AbstractProjectile
     protected override void PerformAction()
     {
         levelManager?.DrainHealthPoint(_hpDrain);
+        if (_actionAudioSource != null)
+        {
+            _actionAudioSource.Play();
+        }
         Crash(_crashForce, _crashRadius);
     }
 

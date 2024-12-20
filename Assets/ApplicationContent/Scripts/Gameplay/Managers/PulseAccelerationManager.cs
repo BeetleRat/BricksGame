@@ -46,7 +46,7 @@ public sealed class PulseAccelerationManager : AbstractBiofeedbackManager
     {
         if (_pulseRateConditions.Count == 0)
         {
-            CustomLogger.Error(this, "Pulse Rate Conditions List is empty");
+            CustomLogger.Error("Pulse Rate Conditions List is empty");
             return;
         }
 

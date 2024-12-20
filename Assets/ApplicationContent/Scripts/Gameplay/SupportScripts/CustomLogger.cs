@@ -1,3 +1,5 @@
+using System.IO;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 /// <summary>
@@ -6,22 +8,37 @@ using UnityEngine;
 public static class CustomLogger
 {
     /// <summary>
-    /// Log error message.
+    /// <para>Log error message.</para>
     /// </summary>
-    /// <param name="obj">the object that sends messages</param>
+    /// <param name="sender">class that sends the message</param>
     /// <param name="message">the message</param>
-    public static void Error(Object obj, string message)
+    public static void Error(string message, [CallerFilePath] string sender = "")
     {
-        Debug.LogError($"[{obj.name}]: {message}");
+        Debug.LogError($"[{ClassName(sender)}]: {message}");
     }
 
     /// <summary>
-    /// Log debug message.
+    /// <para>Log debug message.</para>
     /// </summary>
-    /// <param name="obj">the object that sends messages</param>
+    /// <param name="sender">class that sends the message</param>
     /// <param name="message">the message</param>
-    public static void Log(Object obj, string message)
+    public static void Log(string message, [CallerFilePath] string sender = "")
     {
-        Debug.Log($"[{obj.name}]: {message}");
+        Debug.Log($"[{ClassName(sender)}]: {message}");
+    }
+
+    /// <summary>
+    /// <para>Log warning message.</para>
+    /// </summary>
+    /// <param name="sender">class that sends the message</param>
+    /// <param name="message">the message</param>
+    public static void Warning(string message, [CallerFilePath] string sender = "")
+    {
+        Debug.LogWarning($"[{ClassName(sender)}]: {message}");
+    }
+
+    private static string ClassName(string absoluteClassPath)
+    {
+        return Path.GetFileNameWithoutExtension(absoluteClassPath);
     }
 }

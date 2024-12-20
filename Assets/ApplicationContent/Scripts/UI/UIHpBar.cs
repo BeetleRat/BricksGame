@@ -26,7 +26,7 @@ public sealed class UIHpBar : MonoBehaviour
         {
             if (index < 0 && index >= hpImagesArray.Length)
             {
-                CustomLogger.Error(this, "Attempting to change the active status of a non-existing health point array index.");
+                CustomLogger.Error("Attempting to change the active status of a non-existing health point array index.");
                 return;
             }
 
