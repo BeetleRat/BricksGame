@@ -469,7 +469,7 @@ MonoBehaviour:
   _receivedPulseOffset: 0
   _pollingRateSeconds: 0.1
   _recalculatingCyclePeriod: 10
-  _usePlaceholder: 1
+  _usePlaceholder: 0
   _placeholderPulse: 79
   _placeholderAcceleration: 0
 --- !u!114 &247133886
@@ -730,7 +730,7 @@ MonoBehaviour:
     SpawnChance: 20
     MovementPoints:
     - {fileID: 1554924869}
-  - SpawnedObject: {fileID: 5281095536332501716, guid: 9feba43b01338514094db136fbb4dd6a, type: 3}
+  - SpawnedObject: {fileID: 3279956959287994621, guid: 7649beb40bfcea84a882c040812c3a85, type: 3}
     SpawnChance: 10
     MovementPoints:
     - {fileID: 823712346}

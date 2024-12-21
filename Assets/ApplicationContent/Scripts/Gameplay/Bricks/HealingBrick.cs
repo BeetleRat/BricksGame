@@ -46,7 +46,7 @@ public sealed class HealingBrick : AbstractProjectile
     
     private void SpawnParticles()
     {
-        Vector3 particlesPosition = transform.position + new Vector3(Random.Range(-0.3f, 0.3f), Random.Range(0.5f, 1.5f), Random.Range(-0.3f, 0.3f));
+        Vector3 particlesPosition = transform.position + new Vector3(Random.Range(-0.3f, 0.3f), Random.Range(-0.3f, 0.3f), Random.Range(-0.3f, 0.3f));
         GameObject particles = Instantiate(_fadeParticles.gameObject, particlesPosition, Quaternion.identity);
         Destroy(particles, _fadeParticles.main.duration);
     }
